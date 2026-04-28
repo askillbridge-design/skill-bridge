@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Bridge Academy | Tuition Center in Andal Nagar</title>
+    <meta name="description" content="Skill Bridge Academy offers Abacus, Spoken English, Hindi, Tuition classes from Pre-KG to 10th Standard in MSP Teacher's Colony, Andal Nagar.">
+    <meta name="keywords" content="Skill Bridge Academy, tuition center Andal Nagar, Abacus class, spoken English, Hindi class, tuition near me">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --gold: #FFD700;
+            --dark-blue: #1e3a5f;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .text-gold {
+            color: var(--gold);
+        }
+        
+        .bg-gold {
+            background-color: var(--gold);
+        }
+        
+        .text-dark-blue {
+            color: var(--dark-blue);
+        }
+        
+        .bg-dark-blue {
+            background-color: var(--dark-blue);
+        }
+        
+        .hover-gold:hover {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(30,58,95,0.9), rgba(30,58,95,0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .summer-bg {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        .modal-content-wrapper {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .testimonial-slider {
+            overflow: hidden;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .navbar-scroll {
+            transition: all 0.3s ease;
+        }
+        
+        .scrolled {
+            background-color: rgba(30,58,95,0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar-scroll fixed w-full z-50 bg-transparent py-4 px-6 lg:px-12">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo skill.jpeg" alt="Skill Bridge Academy" class="h-12 w-12 rounded-full object-cover">
+                <div>
+                    <h1 class="font-playfair text-xl lg:text-2xl text-white font-bold">Skill Bridge Academy</h1>
+                    <p class="text-xs text-gold hidden lg:block">Building Skills. Bridging Futures.</p>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-white hover:text-gold transition-colors">Home</a>
+                <a href="#about" class="text-white hover:text-gold transition-colors">About Us</a>
+                <a href="#courses" class="text-white hover:text-gold transition-colors">Courses</a>
+                <a href="#summer" class="text-white hover:text-gold transition-colors">Summer Classes</a>
+                <a href="#admissions" class="text-white hover:text-gold transition-colors">Admissions</a>
+                <a href="#contact" class="text-white hover:text-gold transition-colors">Contact</a>
+                <button onclick="openModal()" class="bg-gold text-dark-blue px-6 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors">
+                    Enroll Now
+                </button>
+            </div>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-dark-blue mt-4 rounded-lg p-4">
+            <a href="#home" class="block text-white hover:text-gold py-2 transition-colors">Home</a>
+            <a href="#about" class="block text-white hover:text-gold py-2 transition-colors">About Us</a>
+            <a href="#courses" class="block text-white hover:text-gold py-2 transition-colors">Courses</a>
+            <a href="#summer" class="block text-white hover:text-gold py-2 transition-colors">Summer Classes</a>
+            <a href="#admissions" class="block text-white hover:text-gold py-2 transition-colors">Admissions</a>
+            <a href="#contact" class="block text-white hover:text-gold py-2 transition-colors">Contact</a>
+            <button onclick="openModal()" class="bg-gold text-dark-blue px-6 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors mt-4 w-full">
+                Enroll Now
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 lg:px-12 text-center animate-fade-in">
+            <h1 class="font-playfair text-4xl lg:text-6xl font-bold mb-6">Welcome to Skill Bridge Academy</h1>
+            <p class="text-xl lg:text-2xl mb-8 text-gold">Empowering Young Minds with Skills & Knowledge</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-gold text-dark-blue px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-400 transition-all transform hover:scale-105">
+                    Enroll Now
+                </button>
+                <a href="#contact" class="border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-dark-blue transition-all transform hover:scale-105">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12 animate-fade-in">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-dark-blue font-bold mb-4">About Skill Bridge Academy</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Skill Bridge Academy is a trusted tuition and skill development center focused on academic excellence, 
+                    personality development, and future success. We provide high-quality coaching with personal attention 
+                    in a friendly environment.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-dark-blue font-bold mb-4">Our Courses</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Abacus Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calculator text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Abacus</h3>
+                    <p class="text-gray-600">Improve calculation speed, concentration & memory</p>
+                </div>
+
+                <!-- Hindi Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-language text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Hindi</h3>
+                    <p class="text-gray-600">Reading, Writing & Speaking</p>
+                </div>
+
+                <!-- Dakshina Bharat Exams Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-file-alt text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Dakshina Bharat Exams</h3>
+                    <p class="text-gray-600">Preparation for government language exams</p>
+                </div>
+
+                <!-- Spoken English Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comments text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Spoken English</h3>
+                    <p class="text-gray-600">Improve communication confidently</p>
+                </div>
+
+                <!-- Grammar Classes Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Grammar Classes</h3>
+                    <p class="text-gray-600">Strong language foundation</p>
+                </div>
+
+                <!-- Handwriting Improvement Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-pen-fancy text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Handwriting Improvement</h3>
+                    <p class="text-gray-600">Beautiful and legible handwriting</p>
+                </div>
+
+                <!-- School Subjects Tuition Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-graduation-cap text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">School Subjects Tuition</h3>
+                    <p class="text-gray-600">All subjects with expert guidance</p>
+                </div>
+
+                <!-- Specialty Sessions Card -->
+                <div class="card-hover bg-white border-2 border-gray-200 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Specialty Sessions</h3>
+                    <p class="text-gray-600">Memory skills, personality development, motivation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summer Classes Section -->
+    <section id="summer" class="py-20 summer-bg">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-white font-bold mb-4">Summer Classes</h2>
+                <p class="text-2xl text-white mb-6">Starting From May 1 to 31</p>
+                <div class="w-24 h-1 bg-white mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-calculator text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Abacus</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-comments text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Spoken English</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-pen-fancy text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Handwriting</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-book text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Grammar</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-language text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Hindi</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center">
+                    <i class="fas fa-child text-dark-blue text-2xl mb-2"></i>
+                    <p class="text-dark-blue font-semibold">Basics for Kids</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-white text-lg mb-4">Fun Learning Activities</p>
+                <button onclick="openModal()" class="bg-white text-dark-blue px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
+                    Join Summer Camp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tuition Classes Section -->
+    <section id="admissions" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-dark-blue font-bold mb-4">Regular Tuition Available</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-semibold text-dark-blue mb-2">From Pre-KG to 10th Standard</h3>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Maths</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Science</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">English</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Tamil</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Hindi</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Social Science</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">Basics</p>
+                    </div>
+                    <div class="bg-gold rounded-lg p-3">
+                        <p class="text-dark-blue font-semibold">All Subjects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-dark-blue font-bold mb-4">Why Choose Us</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Expert Faculty</h3>
+                    <p class="text-gray-600">Experienced and qualified teachers</p>
+                </div>
+                
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-check text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Personal Attention</h3>
+                    <p class="text-gray-600">Individual focus on each student</p>
+                </div>
+                
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Proven Results</h3>
+                    <p class="text-gray-600">Track record of student success</p>
+                </div>
+                
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-smile text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Friendly Environment</h3>
+                    <p class="text-gray-600">Supportive learning atmosphere</p>
+                </div>
+                
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Smart Learning Methods</h3>
+                    <p class="text-gray-600">Modern teaching techniques</p>
+                </div>
+                
+                <div class="card-hover bg-gray-50 rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-rupee-sign text-dark-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark-blue mb-2">Affordable Fees</h3>
+                    <p class="text-gray-600">Quality education at reasonable prices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-dark-blue font-bold mb-4">Parent Reviews</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="testimonial-slider max-w-4xl mx-auto">
+                <div class="testimonial-track">
+                    <div class="min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                            <div class="flex justify-center mb-4">
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                            </div>
+                            <p class="text-lg text-gray-700 mb-4">"Excellent teaching and care. My child has improved significantly in all subjects."</p>
+                            <p class="text-dark-blue font-semibold">- Parent of 8th Grade Student</p>
+                        </div>
+                    </div>
+                    
+                    <div class="min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                            <div class="flex justify-center mb-4">
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                            </div>
+                            <p class="text-lg text-gray-700 mb-4">"My child improved confidence and communication skills after joining spoken English classes."</p>
+                            <p class="text-dark-blue font-semibold">- Parent of 6th Grade Student</p>
+                        </div>
+                    </div>
+                    
+                    <div class="min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                            <div class="flex justify-center mb-4">
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                                <i class="fas fa-star text-gold text-2xl"></i>
+                            </div>
+                            <p class="text-lg text-gray-700 mb-4">"Best tuition center in area. Teachers are very supportive and knowledgeable."</p>
+                            <p class="text-dark-blue font-semibold">- Parent of 10th Grade Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark-blue text-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-4xl lg:text-5xl text-white font-bold mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-phone text-gold text-xl mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold">Phone</h3>
+                                <p class="text-gold">7530027616</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-envelope text-gold text-xl mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold">Email</h3>
+                                <p class="text-gold">askillbridge@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-map-marker-alt text-gold text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold">Location</h3>
+                                <p class="text-gold">MSP Teacher's Colony, Andal Nagar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-gray-100 rounded-2xl p-8 h-64 flex items-center justify-center">
+                        <div class="text-center text-dark-blue">
+                            <i class="fas fa-map-marked-alt text-4xl mb-4"></i>
+                            <p class="text-lg">Google Map Integration</p>
+                            <p class="text-sm">Location: MSP Teacher's Colony, Andal Nagar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-blue text-white py-8">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <img src="logo skill.jpeg" alt="Skill Bridge Academy" class="h-10 w-10 rounded-full object-cover">
+                    <div>
+                        <h3 class="font-playfair text-xl font-bold">Skill Bridge Academy</h3>
+                        <p class="text-sm text-gold">Building Skills. Bridging Futures.</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-gold transition-colors">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6 pt-6 border-t border-gray-700">
+                <p class="text-sm text-gray-400">© 2024 Skill Bridge Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917530027616" target="_blank" class="whatsapp-float bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Call Floating Button -->
+    <a href="tel:7530027616" class="fixed bottom-20 right-20 bg-red-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg z-50 hover:bg-red-600 transition-colors">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
+
+    <!-- Admission Enquiry Modal -->
+    <div id="enquiryModal" class="modal">
+        <div class="modal-content-wrapper">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl text-dark-blue font-bold">Admission Enquiry</h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="submitEnquiry(event)">
+                <div class="mb-4">
+                    <label class="block text-dark-blue font-semibold mb-2">Parent Name</label>
+                    <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-dark-blue font-semibold mb-2">Student Name</label>
+                    <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-dark-blue font-semibold mb-2">Phone Number</label>
+                    <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-dark-blue font-semibold mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-dark-blue font-semibold mb-2">Course Interested</label>
+                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                        <option value="">Select a course</option>
+                        <option value="abacus">Abacus</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="spoken-english">Spoken English</option>
+                        <option value="grammar">Grammar Classes</option>
+                        <option value="handwriting">Handwriting Improvement</option>
+                        <option value="tuition">School Subjects Tuition</option>
+                        <option value="summer">Summer Classes</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-dark-blue font-semibold mb-2">Message</label>
+                    <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gold"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-gold text-dark-blue py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors">
+                    Submit Enquiry
+                </button>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('enquiryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('enquiryModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('enquiryModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        function submitEnquiry(event) {
+            event.preventDefault();
+            alert('Thank you for your enquiry! We will contact you soon.');
+            closeModal();
+            event.target.reset();
+        }
+
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonialTrack = document.querySelector('.testimonial-track');
+        const testimonials = document.querySelectorAll('.testimonial-track > div');
+        
+        function slideTestimonials() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+        
+        setInterval(slideTestimonials, 5000);
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
